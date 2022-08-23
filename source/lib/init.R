@@ -1,4 +1,4 @@
-init.packages.list <- c("loadtest", "ggplot2", "ggpubr", "grid", "gridExtra", "png", "jpeg", "stringr")
+init.packages.list <- c("loadtest", "ggplot2", "ggpubr", "grid", "gridExtra", "png", "jpeg", "stringr", "magrittr")
 current_date <- Sys.Date()
 current_time <- Sys.time()
 
@@ -14,6 +14,6 @@ for(package in init.packages.list)
       install.packages(package)
     
   }else {
-    print(paste0(package, " is already installed"))
+    print(paste0(package, " is already installed."))
     
   }
