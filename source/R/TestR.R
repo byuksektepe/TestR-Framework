@@ -17,7 +17,7 @@ library(stringr)
 library(magrittr)
 
 
-test_url <- c("https://kariyer.baykartech.com")
+test_url <- c("https://www.github.com")
 test_url_formatted <- str_replace(test_url, "https://","")
 
 logo <- readPNG("img/TestR-Logo.png")
@@ -29,6 +29,7 @@ thr = 7
 loops = 40
 
 automation_tag <- paste0(test_url_formatted," (THR: ",thr,", LPS: ",loops,")")
+automation_tag_formatted <- str_remove_all(automation_tag, "[^A-Za-z0-9]+")
 
 # Run loadtest
 results <- loadtest(url = test_url,
@@ -37,17 +38,13 @@ results <- loadtest(url = test_url,
                     loops = loops,
                     delay_per_request=100)
 
-# Print Results
-print(results)
-
-head(results)
-
 
 ## Create pdf file by test results
 CreatePDF.LoadTest <- function(results)
 {
-  automation_tag_formatted <- str_remove_all(automation_tag, "[^A-Za-z0-9]+")
-  pdf(file= paste0("results\\pdf\\",current_date,"test_result_",automation_tag_formatted,".pdf"), width = 11, height = 9.5)
+  pdf(file= paste0("results\\pdf\\",current_date,"test_result_",automation_tag_formatted,".pdf"), 
+      width = 11, 
+      height = 9.5)
   
   # create a 2X2 grid
   par( mfrow= c(2,2) )
@@ -59,12 +56,12 @@ CreatePDF.LoadTest <- function(results)
   prs <- tc_plot_requests_per_second(results)
 
   
-  ar <- annotation_custom(rasterGrob(test_mark, 
-                                     x = 0.98, 
-                                     y=.05, 
-                                     hjust = 1, 
-                                     width= 0.05, 
-                                     interpolate=TRUE))
+  ar <- test_mark %>%
+              rasterGrob(x = 0.98, 
+                         y=.05, 
+                         hjust = 1, 
+                         width= 0.05, 
+                         interpolate=TRUE) %>% annotation_custom()
   
   grid_graphs <- ggarrange(pet,
                            peth, 
@@ -81,14 +78,20 @@ CreatePDF.LoadTest <- function(results)
   
   grid.text(paste0(current_time), y=.08, gp = gpar(fontsize = 18))
   
-  out <- annotate_figure(grid_graphs,
-                         bottom = text_grob(paste("\n \n This file auto generated and executed by: Berkant Yüksektepe. Test Classes used. This page involves only load and performance tests, \n for more information please visit project repo: https://github.com/Berkantyuks/TestR-Framework\n"),
-                                            color = "black",
-                                            face = "italic", 
-                                            size = 10),
-                         left = paste(current_time, "TestR"),
-                         right = paste(current_time, "TestR"),
-                         top = text_grob(paste0("\n Automated NF Test Results for ",automation_tag,"\n"), color = "black", face = "bold", size = 14))  + ar
+  out <- grid_graphs %>% 
+                annotate_figure(bottom = text_grob(paste("\n \n This file auto generated and executed by: Berkant Yüksektepe. Test Classes used. This page involves only load and performance tests, \n for more information please visit project repo: https://github.com/Berkantyuks/TestR-Framework\n"),
+                                                   color = "black",
+                                                   face = "italic", 
+                                                   size = 10),
+                                
+                                left = paste(current_time, "TestR"),
+                                
+                                right = paste(current_time, "TestR"),
+                                
+                                top = text_grob(paste0("\n Automated NF Test Results for ",automation_tag,"\n"), 
+                                                color = "black", 
+                                                face = "bold", 
+                                                size = 14)) + ar
   
   print(out)
   dev.off()
@@ -98,4 +101,6 @@ CreatePDF.LoadTest(results)
 
 
 # Generate HTML Report
-loadtest_report(results,paste0(getwd(),"/results/html/"))
+getwd() %>%
+    paste0("/results/html/",current_date,"test_result_",automation_tag_formatted,".html") %>%
+        loadtest_report(results, .)

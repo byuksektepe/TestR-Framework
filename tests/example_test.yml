@@ -1,9 +1,12 @@
 Test:
 
   name: Example Test 1
+  description: low level load test
   url: https://www.github.com/
   typle: load
   thread: 7
   loop: 10
   head: NULL
+  delay: 100
+  
   
