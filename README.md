@@ -8,4 +8,5 @@
  <a href="https://github.com/Berkantyuks/QA-Project-Test-Classification-Mark" rel="tc-wb"><img width="80px" style="border-width: 0;" src="https://github.com/Berkantyuks/QA-Project-Test-Classification-Mark/blob/main/TCM-114x40-box/114x40-wb.png" alt="tc-wb" /></a>
 <a href="https://github.com/Berkantyuks/QA-Project-Test-Classification-Mark#test-class-u" rel="tc-u"><img width="80px" style="border-width: 0;" src="https://github.com/Berkantyuks/QA-Project-Test-Classification-Mark/blob/main/TCM-114x40-light/114x40-tc-u.png" alt="tc-u" /></a>
 
-Non Functional Test Automation Framework with R
+This project is licensed under Massachusetts Institute of Technology. Copyright (c) 2022 Berkant Yüksektepe. <br/>
+TestR is a non-functional Test Automation Framework with running R. It provides multiple load/performance tests in one test case file. Uses a YAML file for test cases. Exports a HTML and PDF results.
