@@ -10,5 +10,5 @@ for(package in init.packages.list)
     else
       install.packages(package)
   }else {
-    print(paste0(package, "is already installed"))
+    print(paste0(package, " is already installed"))
   }
