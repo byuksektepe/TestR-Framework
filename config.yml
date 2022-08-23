@@ -1,0 +1,17 @@
+config: 
+
+  - name: Jmeter-version
+    type: string
+    values: 
+    - 5.2
+    - 5.5
+    default: 5.5
+    
+  - name: test-type
+    type: string
+    values:
+    - load
+    - performance
+    default: load
+    
+  
