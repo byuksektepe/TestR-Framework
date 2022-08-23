@@ -1,17 +1,48 @@
-config: 
+parameters: 
 
   - name: Jmeter-version
-    type: string
-    values: 
-    - 5.2
-    - 5.5
-    default: 5.5
+      type: string
+      value: 5.5
     
   - name: test-type
-    type: string
-    values:
-    - load
-    - performance
-    default: load
+      type: string
+      value: load
+    
+test-classes:
+
+  - class: TC-NF
+  - class: TC-BL
+  - class: TC-WB
+  - class: TC-BB
+  
+test-configs:
+
+  - url: https://www.faustx.com/en/
+      type: string
+      
+  - brand: FaustX
+      type: string
+      
+  - time_zone: Europe/Ist
+      type: string
+  
+  - thread: 7
+      default: 3
+      type: integer
+      
+  - loop: 10
+      default: 2
+      type: integer
+
+    
+rules:
+  export-pdf: 1
+    type: boolean
+    default: 1
+    
+  export-html: 1
+    type: boolean
+    default: 1
+  
     
   
