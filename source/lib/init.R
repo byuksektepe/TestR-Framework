@@ -1,6 +1,14 @@
-if (!requireNamespace("ggplot2", quietly = TRUE)) {
-  print("Package ggplot2 is needed for TestR Framework. ggplot2 installing...")
-  library(ggplot2)
-}else {
-  print("ggplot2 is installed.")
-}
+init.packages.list <- c("loadtest", "ggplot2", "ggpubr")
+
+for(package in init.packages.list)
+  
+  if (!requireNamespace(package, quietly = TRUE)) {
+    print(paste0("Package", package, "is needed for TestR Framework.", package, "installing..."))
+    
+    if(package == "loadtest")
+      remotes::install_github("tmobile/loadtest")
+    else
+      install.packages(package)
+  }else {
+    print(paste0(package, "is already installed"))
+  }
