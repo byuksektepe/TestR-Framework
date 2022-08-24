@@ -1,4 +1,4 @@
-init.packages.list <- c("loadtest", "ggplot2", "ggpubr", "grid", "gridExtra", "png", "jpeg", "stringr", "magrittr")
+init.packages.list <- c("loadtest", "ggplot2", "ggpubr", "grid", "gridExtra", "png", "jpeg", "stringr", "magrittr", "yaml")
 current_date <- Sys.Date()
 current_time <- Sys.time()
 
