@@ -3,7 +3,7 @@ Sys.setenv("LOADTEST_JMETER_PATH"="C:\\apache-jmeter-5.5\\bin\\jmeter.bat")
 
 #Check libraries installed
 source(paste0(getwd(),"/source/lib/init.R"), chdir = TRUE)
-source(paste0(getwd(),"/source/plots/load_test_plots.R"), chdir = TRUE)
+source(paste0(getwd(),"/source/plots/load.test.plots.R"), chdir = TRUE)
 
 # Load libraries
 library(loadtest)
@@ -37,6 +37,8 @@ results <- loadtest(url = test_url,
                     threads = thr,
                     loops = loops,
                     delay_per_request=100)
+
+head(results)
 
 
 ## Create pdf file by test results
