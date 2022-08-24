@@ -1,8 +1,13 @@
 library(yaml)
+library(reshape2)
 
-test_path = paste0(getwd(), "/tests/")
+test_path <- paste0(getwd(), "/tests/")
 
-data <- yaml.load_file(paste0(test_path, "example_test.yml"))
+test_files <- list.files(path=test_path, pattern=".yml", all.files=FALSE, full.names=FALSE)
+df <- data.frame()
 
 
-data$`Test-Scenario-1`
+  
+  df <- lapply(test_files, function(x) out <- yaml.load_file(paste0(test_path, test_file)))
+
+  
