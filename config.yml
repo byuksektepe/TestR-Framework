@@ -1,52 +1,12 @@
 parameters: 
 
   - name: Jmeter-version
-      type: string
-      value: 5.5
+    type: string
+    value: 5.5
     
   - name: test-type
-      type: string
-      value: load
-    
-test-classes:
-
-  - class: TC-NF
-  - class: TC-BL
-  - class: TC-WB
-  - class: TC-BB
-  
-default-test-configs:
-
-  - url: www.github.com/Berkantyuks
-      type: string
-      
-  - brand: FaustX
-      type: string
-      nullable: 1
-      
-  - time_zone: Europe/Ist
-      type: string
-      nullable: 0
-  
-  - thread: 7
-      default: 3
-      type: integer
-      nullable: 1
-      
-  - loop: 10
-      default: 2
-      type: integer
-      nullable: 1
-
-    
-rules:
-  export-pdf: 1
-    type: boolean
-    default: 1
-    
-  export-html: 1
-    type: boolean
-    default: 1
+    type: string
+    value: load
   
     
   

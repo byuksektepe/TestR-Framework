@@ -1,21 +1,21 @@
 Test-Scenario-1:
 
-  - name: Example Test 1 hello
+  - name: hello Example Test 1
     description: low level load test
-    url: https://www.github.com/
+    url: https://www.hello.com/
     typle: load
-    thread: 7
-    loop: 10
-    head: NULL
+    thread: 10
+    loop: 20
+    head: NO_HEAD
     delay: 100
   
 Test-Scenario-2:
 
-  - name: Example Test 2 hello
-    description: low level load test
-    url: https://www.github.com/
+  - name: hello Example Test 2 
+    description: hello level load test
+    url: https://www.hello.com/
     typle: load
-    thread: 7
-    loop: 10
-    head: NULL
+    thread: 10
+    loop: 20
+    head: NO_HEAD
     delay: 100
