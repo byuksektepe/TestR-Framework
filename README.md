@@ -1,6 +1,6 @@
 <picture>
 <source media="(prefers-color-scheme: dark)" srcset="/img/TestR-Logo-dark.png">
-<img align="left" width="180px" src="/img/TestR-Logo.png" alt="TestR Framework"/>
+<img align="left" width="150px" src="/img/TestR-Logo.png" alt="TestR Framework"/>
 </picture>
 
 ## TestR: Load Test Automation Framework 
