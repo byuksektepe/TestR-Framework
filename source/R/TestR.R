@@ -1,3 +1,8 @@
+# ========================================================================= #
+# TestR Framework Copyright © 2022 Berkant Yüksektepe                       #
+# Licensed under the MIT License.                                           #
+# ========================================================================= #
+
 # Set Environment Variable
 Sys.setenv("LOADTEST_JMETER_PATH"="C:\\apache-jmeter-5.5\\bin\\jmeter.bat")
 

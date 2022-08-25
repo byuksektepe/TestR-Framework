@@ -1,3 +1,8 @@
+# ========================================================================= #
+# TestR Framework Copyright © 2022 Berkant Yüksektepe                       #
+# Licensed under the MIT License.                                           #
+# ========================================================================= #
+
 parameters: 
 
   - name: Jmeter-version

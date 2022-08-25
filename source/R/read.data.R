@@ -1,3 +1,9 @@
+# ========================================================================= #
+# TestR Framework Copyright © 2022 Berkant Yüksektepe                       #
+# Licensed under the MIT License.                                           #
+# ========================================================================= #
+
+
 library(yaml)
 library(reshape2)
 
@@ -34,7 +40,10 @@ read.config.data <- function(){
 var_test <- read.test.data()
 var_config <- read.config.data()
 
+params <- var_config[var_config$L1 == 'parameters',]
+params <- params[, colSums(is.na(params)) != nrow(params)]
 
+data_params <- reshape(params,direction = 'wide',timevar = 'L2',idvar = 'L1')
 
 
   
