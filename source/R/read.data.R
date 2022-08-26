@@ -6,6 +6,7 @@
 
 library(yaml)
 library(reshape2)
+library(purrr)
 
 
 
@@ -34,16 +35,13 @@ read.config.data <- function(){
   
   config_file <- yaml.load_file(config_path)
   
-   return(df_config <- melt(config_file))
+   return(config_file)
 }
+
 
 var_test <- read.test.data()
 var_config <- read.config.data()
 
-params <- var_config[var_config$L1 == 'parameters',]
-params <- params[, colSums(is.na(params)) != nrow(params)]
-
-data_params <- reshape(params,direction = 'wide',timevar = 'L2',idvar = 'L1')
 
 
   

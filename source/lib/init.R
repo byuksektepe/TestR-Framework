@@ -3,7 +3,9 @@
 # Licensed under the MIT License.                                           #
 # ========================================================================= #
 
-init.packages.list <- c("loadtest", "ggplot2", "ggpubr", "grid", "gridExtra", "png", "jpeg", "stringr", "magrittr", "yaml","reshape2")
+init.packages.list <- c("loadtest", "ggplot2", "ggpubr", "grid", "gridExtra", "png",
+                        "jpeg", "stringr", "magrittr", "yaml","reshape2","data.tree")
+
 current_date <- Sys.Date()
 current_time <- Sys.time()
 
