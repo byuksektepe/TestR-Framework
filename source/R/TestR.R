@@ -4,11 +4,12 @@
 # ========================================================================= #
 
 # Set Environment Variable
-Sys.setenv("LOADTEST_JMETER_PATH"="C:\\apache-jmeter-5.5\\bin\\jmeter.bat")
+
 
 #Check libraries installed
 source(paste0(getwd(),"/source/lib/init.R"), chdir = TRUE)
 source(paste0(getwd(),"/source/plots/load.test.plots.R"), chdir = TRUE)
+source(paste0(getwd(),"/source/R/get.data.R"), chdir = FALSE)
 
 # Load libraries
 library(loadtest)
@@ -20,6 +21,9 @@ library(png)
 library(jpeg)
 library(stringr)
 library(magrittr)
+
+jver <- get.jmeter.version()
+Sys.setenv("LOADTEST_JMETER_PATH"=sprintf("C:\\apache-jmeter-%s\\bin\\jmeter.bat", jver))
 
 
 test_url <- c("https://www.github.com")

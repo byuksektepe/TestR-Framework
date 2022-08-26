@@ -19,4 +19,12 @@ get.jmeter.version <- function(){
   return(jmeter_version)
 }
 
-var <- get.jmeter.version()
+get.test_type <- function(){
+  
+  test_type_data <- var_config %>%
+    flatten %>%
+    keep(~ .x$name == "test-type")
+  
+  test_type <- test_type_data[[1]]$value
+  return(test_type)
+}

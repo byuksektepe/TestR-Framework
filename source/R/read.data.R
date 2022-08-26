@@ -18,7 +18,6 @@ read.test.data <- function(){
   
   test_files <- list.files(path=test_path, pattern=".yml", all.files=FALSE, full.names=FALSE)
   
-  
   test_list <- lapply(test_files,
                         function(x) out <- yaml.load_file(paste0(test_path, x)))
   
