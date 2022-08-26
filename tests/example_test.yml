@@ -2,7 +2,8 @@ Test-Scenario-1:
 
   - name: Diff Example Test 1
     description: low level load test
-    url: https://www.github.com/
+    method: GET
+    url: https://www.github.com
     typle: load
     thread: 7
     loop: 10
@@ -13,7 +14,8 @@ Test-Scenario-2:
 
   - name: Diff Example Test 2
     description: low level load test
-    url: https://www.github.com/
+    method: GET
+    url: https://www.github.com
     typle: load
     thread: 7
     loop: 10
@@ -24,7 +26,8 @@ Test-Scenario-3:
 
   - name: Diff Example Test 3
     description: low level load test
-    url: https://www.github.com/
+    method: GET
+    url: https://www.github.com
     typle: load
     thread: 7
     loop: 10

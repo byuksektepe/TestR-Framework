@@ -33,9 +33,6 @@ library(magrittr)
 
 
 
-
-
-
 test_url <- c("https://www.github.com")
 test_url_formatted <- str_replace(test_url, "https://","")
 
@@ -50,29 +47,19 @@ loops = 40
 automation_tag <- paste0(test_url_formatted," (THR: ",thr,", LPS: ",loops,")")
 automation_tag_formatted <- str_remove_all(automation_tag, "[^A-Za-z0-9]+")
 
-TestR <- lapply(tdata, function(x)
+do.load.test <- function(url, method, thread, loop, delay){
+  return(loadtest(url = url, method = method, threads = thread, loops = loop, delay_per_request = delay))
+}
+
+TestR <- function(){
   
-  for (r in x) {
+  out <- lapply(tdata, function(x) for(r in x){
     
-    print(paste0(r[[1]]$name, r[[1]]$url))
-    
-  }
-)
+    results <- do.load.test(r[[1]]$url, r[[1]]$method, r[[1]]$thread, r[[1]]$loop, r[[1]]$delay)
+  })
+}
 
-# Run loadtest
-results <- loadtest(url = test_url,
-                    method = "GET",
-                    threads = thr,
-                    loops = loops,
-                    delay_per_request=100)
-
-head(results)
+TestR()
 
 
 
-
-
-# Generate HTML Report
-getwd() %>%
-    paste0("/results/html/",current_date,"test_result_",automation_tag_formatted,".html") %>%
-        loadtest_report(results, .)

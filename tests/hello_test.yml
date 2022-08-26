@@ -2,7 +2,8 @@ Test-Scenario-1:
 
   - name: hello Example Test 1
     description: low level load test
-    url: https://www.hello.com/
+    method: GET
+    url: https://www.hello.com
     typle: load
     thread: 10
     loop: 20
@@ -13,7 +14,8 @@ Test-Scenario-2:
 
   - name: hello Example Test 2 
     description: hello level load test
-    url: https://www.hello.com/
+    method: GET
+    url: https://www.hello.com
     typle: load
     thread: 10
     loop: 20
