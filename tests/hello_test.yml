@@ -1,19 +1,7 @@
-Test-Scenario-1:
+Scenario-1:
 
   - name: hello Example Test 1
     description: low level load test
-    method: GET
-    url: https://www.hello.com
-    typle: load
-    thread: 10
-    loop: 20
-    head: NO_HEAD
-    delay: 100
-  
-Test-Scenario-2:
-
-  - name: hello Example Test 2 
-    description: hello level load test
     method: GET
     url: https://www.hello.com
     typle: load

@@ -3,8 +3,9 @@
 # Licensed under the MIT License.                                           #
 # ========================================================================= #
 
+# Init Required Packages
 init.packages.list <- c("loadtest", "ggplot2", "ggpubr", "grid", "gridExtra", "png",
-                        "jpeg", "stringr", "magrittr", "yaml","reshape2","data.tree", "purrr")
+                        "jpeg", "stringr", "magrittr", "yaml","reshape2","data.tree", "purrr", "crayon")
 
 current_date <- Sys.Date()
 current_time <- Sys.time()
@@ -24,3 +25,9 @@ for(package in init.packages.list)
     print(paste0("Required package: ",package, " is already installed."))
     
   }
+
+# Init Required Global Variables
+
+logo      <- readPNG("img/TestR-Logo.png")
+test_mark <- readPNG("img/TestR-Logo.png")
+cover     <- readPNG("img/TestR-Cover-7619720.png")

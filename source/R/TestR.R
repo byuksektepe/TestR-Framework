@@ -5,8 +5,6 @@
 
 # Check libraries installed or install
 source(paste0(getwd(),"/source/lib/init.R"), chdir = TRUE)
-# Load Plots
-source(paste0(getwd(),"/source/plots/load.test.plots.R"), chdir = TRUE)
 # Get Data Functions
 source(paste0(getwd(),"/source/R/get.data.R"), chdir = FALSE)
 # Export Data Functions
@@ -30,32 +28,78 @@ library(png)
 library(jpeg)
 library(stringr)
 library(magrittr)
+library(crayon)
 
 
 
 test_url <- c("https://www.github.com")
 test_url_formatted <- str_replace(test_url, "https://","")
 
-logo <- readPNG("img/TestR-Logo.png")
-test_mark <- readPNG("img/TestR-Logo.png")
 
-cover <- readPNG("img/TestR-Cover-7619720.png")
 
 thr = 7
 loops = 40
 
 automation_tag <- paste0(test_url_formatted," (THR: ",thr,", LPS: ",loops,")")
-automation_tag_formatted <- str_remove_all(automation_tag, "[^A-Za-z0-9]+")
 
-do.load.test <- function(url, method, thread, loop, delay){
-  return(loadtest(url = url, method = method, threads = thread, loops = loop, delay_per_request = delay))
+
+do.load.test <- function(url, 
+                         method, 
+                         thread, 
+                         loop, 
+                         delay){
+  
+  return(loadtest(url = url, 
+                  method = method, 
+                  threads = thread, 
+                  loops = loop, 
+                  delay_per_request = delay))
 }
 
 TestR <- function(){
   
-  out <- lapply(tdata, function(x) for(r in x){
+  run <- lapply(tdata, function(x) 
     
-    results <- do.load.test(r[[1]]$url, r[[1]]$method, r[[1]]$thread, r[[1]]$loop, r[[1]]$delay)
+    for(r in x){
+      
+      # --> Raw
+      nam <- r[[1]]$name
+      des <- r[[1]]$description
+      url <- r[[1]]$url
+      met <- r[[1]]$method
+      thr <- r[[1]]$thread
+      lop <- r[[1]]$loop
+      del <- r[[1]]$delay
+      # <--
+      
+      # --> Formatted
+      url.f <- url %>% str_replace("https://","")
+      test.t <- sprintf("%s (THR: %s, LPS: %s)", nam, thr, lop)
+      # <--
+      
+      sprintf("-> TestR: Start by Test Name: %s \n", nam) %>%
+        cyan() %>%
+          cat()
+      
+      res <- do.load.test(url, 
+                          met, 
+                          thr, 
+                          lop, 
+                          del)
+      
+      sprintf("-> TestR: End by Test Name: %s \n - \n", nam) %>%
+        cyan() %>%
+        cat()
+      
+      sprintf("-> TestR: Start to PDF Export by Test Name: %s \n - \n", nam) %>%
+        yellow() %>%
+        cat()
+      
+      CreatePDF.TestR(results = res, automation_tag = test.t)
+      
+      sprintf("-> TestR: End PDF Export by Test Name: %s \n - \n", nam) %>%
+        yellow() %>%
+        cat()
   })
 }
 
