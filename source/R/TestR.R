@@ -12,11 +12,11 @@ source(paste0(getwd(),"/source/R/export.data.R"), chdir = FALSE)
 
 # Set Jmeter Environment Variable
 jver <- get.jmeter.version()
+Sys.setenv("LOADTEST_JMETER_PATH"=sprintf("C:\\apache-jmeter-%s\\bin\\jmeter.bat", jver))
 
 # Get test data from yaml files
 tdata <- get.test.data()
 
-Sys.setenv("LOADTEST_JMETER_PATH"=sprintf("C:\\apache-jmeter-%s\\bin\\jmeter.bat", jver))
 
 # Load libraries
 library(loadtest)
@@ -29,18 +29,6 @@ library(jpeg)
 library(stringr)
 library(magrittr)
 library(crayon)
-
-
-
-test_url <- c("https://www.github.com")
-test_url_formatted <- str_replace(test_url, "https://","")
-
-
-
-thr = 7
-loops = 40
-
-automation_tag <- paste0(test_url_formatted," (THR: ",thr,", LPS: ",loops,")")
 
 
 do.load.test <- function(url, 
