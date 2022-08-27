@@ -5,7 +5,7 @@
 
 # Init Required Packages
 init.packages.list <- c("loadtest", "ggplot2", "ggpubr", "grid", "gridExtra", "png",
-                        "jpeg", "stringr", "magrittr", "yaml","reshape2","data.tree", "purrr", "crayon")
+                        "jpeg", "stringr", "magrittr", "yaml","reshape2","data.tree", "purrr", "crayon", "roxygen2")
 
 current_date <- Sys.Date()
 current_time <- Sys.time()

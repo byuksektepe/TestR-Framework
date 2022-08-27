@@ -9,6 +9,13 @@ library(purrr)
 library(magrittr)
 
 
+#' Get JMeter Version
+#' gets jmeter version from pre-defined config names in config.yml file
+#'
+#' @return : String : Jmeter.Version
+#' @export
+#'
+#' @examples
 get.jmeter.version <- function(){
   
   jmeter.name <- "Jmeter-version"
@@ -51,6 +58,14 @@ get.jmeter.version <- function(){
   return(out)
 }
 
+
+#' Get Test Type
+#' gets test type from pre-defined config names in config.yml file
+#'
+#' @return : String : Test.Type
+#' @export
+#'
+#' @examples
 get.test.type <- function(){
   
   test.type.name <- "test-type"
@@ -96,6 +111,14 @@ get.test.type <- function(){
   return(out)
 }
 
+
+#' Get Test Data
+#' gets test data from tests folder<Or Defined> in <test_file_name>.yml file
+#'
+#' @return : List : Test Data
+#' @export
+#'
+#' @examples
 get.test.data <- function(){
   
   test_data <- var_test

@@ -5,7 +5,7 @@
 ---
 configs: 
 
-  - name: Jmeter-versio
+  - name: Jmeter-version
     type: float
     value: 5.5
     pre-options: 5.2, 5.5
