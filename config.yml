@@ -5,7 +5,7 @@
 ---
 configs: 
 
-  - name: Jmeter-version
+  - name: Jmeter-versio
     type: float
     value: 5.5
     pre-options: 5.2, 5.5
@@ -18,12 +18,12 @@ configs:
   - name: export-pdf
     type: boolean
     value: 1
-    pre-opetions: 0, 1
+    pre-options: 0, 1
     
   - name: export-html
     type: boolean
     value: 1
-    pre-opetions: 0, 1
+    pre-options: 0, 1
 ---
   
     
