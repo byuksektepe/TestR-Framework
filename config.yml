@@ -6,8 +6,8 @@
 configs: 
 
   - name: Jmeter-version
-    type: string
-    value:
+    type: float
+    value: 5.5
     pre-options: 5.2, 5.5
     
   - name: test-type

@@ -13,13 +13,13 @@ get.jmeter.version <- function(){
   
   jmeter.name <- "Jmeter-version"
   
-  tryCatch(
+  out <- tryCatch(
     expr = {
-      jmeter_data <- var_config %>%
+      jmeter.data <- var_config %>%
         flatten %>%
         keep(~ .x$name == jmeter.name)
       
-      jmeter.version <- jmeter_data[[1]]$value
+      jmeter.version <- jmeter.data[[1]]$value
       
     },
     
@@ -32,7 +32,7 @@ get.jmeter.version <- function(){
         stop()
     },
     
-    finally = {
+    finally = function(){
       
       jmeter.version %>% {
         
@@ -48,6 +48,7 @@ get.jmeter.version <- function(){
       }
     }
   )
+  return(out)
 }
 
 get.test.type <- function(){
