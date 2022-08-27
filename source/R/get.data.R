@@ -11,12 +11,43 @@ library(magrittr)
 
 get.jmeter.version <- function(){
   
-  jmeter_data <- var_config %>%
-    flatten %>%
-    keep(~ .x$name == "Jmeter-version")
+  jmeter.name <- "Jmeter-version"
   
-  jmeter_version <- jmeter_data[[1]]$value
-  return(jmeter_version)
+  tryCatch(
+    expr = {
+      jmeter_data <- var_config %>%
+        flatten %>%
+        keep(~ .x$name == jmeter.name)
+      
+      jmeter.version <- jmeter_data[[1]]$value
+      
+    },
+    
+    error = function(e){
+      
+      jmeter.not.found <- sprintf("TestR: Config name of '%s' is not found in %s/config.yml file.", 
+                              jmeter.name, 
+                              getwd())
+      jmeter.not.found %>%
+        stop()
+    },
+    
+    finally = {
+      
+      jmeter.version %>% {
+        
+        if(!is.null(.)) return(.) 
+        
+        else {
+          jmeter.is.null <- sprintf("TestR: '%s' is should be not null in %s/config.yml file.", 
+                                    jmeter.name, 
+                                    getwd())
+          jmeter.is.null %>% stop()
+          
+        }
+      }
+    }
+  )
 }
 
 get.test.type <- function(){

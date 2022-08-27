@@ -7,13 +7,23 @@ configs:
 
   - name: Jmeter-version
     type: string
-    value: 5.5
+    value:
     pre-options: 5.2, 5.5
     
   - name: test-type
     type: string
     value: load
     pre-options: performance, load
+    
+  - name: export-pdf
+    type: boolean
+    value: 1
+    pre-opetions: 0, 1
+    
+  - name: export-html
+    type: boolean
+    value: 1
+    pre-opetions: 0, 1
 ---
   
     
