@@ -4,11 +4,11 @@
 # ========================================================================= #
 
 # Check libraries installed or install
-source(paste0(getwd(),"/source/lib/init.R"), chdir = TRUE)
+source(paste0(getwd(),"/lib/init.R"), chdir = TRUE)
 # Get Data Functions
-source(paste0(getwd(),"/source/R/get.data.R"), chdir = FALSE)
+source(paste0(getwd(),"/R/get.data.R"), chdir = FALSE)
 # Export Data Functions
-source(paste0(getwd(),"/source/R/export.data.R"), chdir = FALSE)
+source(paste0(getwd(),"/R/export.data.R"), chdir = FALSE)
 
 # Set Jmeter Environment Variable
 jver <- get.jmeter.version()

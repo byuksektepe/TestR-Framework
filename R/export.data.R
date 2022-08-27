@@ -12,7 +12,7 @@ library(stringr)
 
 
 # Load Plots
-source(paste0(getwd(),"/source/plots/load.test.plots.R"), chdir = TRUE)
+source(paste0(getwd(),"/plots/load.test.plots.R"), chdir = TRUE)
 
 ## Create pdf file by test results
 CreatePDF.TestR <- function(results, automation_tag)

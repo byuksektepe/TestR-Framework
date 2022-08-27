@@ -3,7 +3,7 @@
 # Licensed under the MIT License.                                           #
 # ========================================================================= #
 
-source(paste0(getwd(), "/source/R/read.data.R"))
+source(paste0(getwd(), "/R/read.data.R"))
 
 library(purrr)
 library(magrittr)
