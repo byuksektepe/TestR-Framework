@@ -61,13 +61,3 @@ library(jpeg)
 library(stringr)
 library(magrittr)
 library(crayon)
-
-# Init Required Global Variables
-
-logo      <- readPNG("img/TestR-Logo.png")
-test_mark <- readPNG("img/TestR-Logo.png")
-cover     <- readPNG("img/TestR-Cover-7619720.png")
-
-# Read Const Variables
-
-source(paste0(getwd(),"/lib/const.R"), chdir = FALSE)

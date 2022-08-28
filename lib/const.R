@@ -34,13 +34,13 @@ config.is.null.msg <- "TestR: '%s' is should be not null in %s/config.yml file."
 # Test
 test.is.null.msg <- "TestR: receiven test data is null, test execution stopped. Please check <test_file_name>.yml files. Default test directory is %s/tests/"
 test.tag.title <- "%s (THR: %s, LPS: %s)"
-test.start.msg <- "-> TestR: Start by Test Name: %s \n"
-test.end.msg <- "-> TestR: End by Test Name: %s \n - \n"
+test.start.msg <- "-> TestR: Start > Test Name: %s \n"
+test.end.msg <- "-> TestR: End > Test Name: %s \n - \n"
 
 # Replace/Remove
-remove.https <- "https://"
+remove.str.https <- "https://"
 
 # Export
-export.pdf.start.msg <- "-> TestR: Start to PDF Export by Test Name: %s \n - \n"
-export.pdf.end.msg <- "-> TestR: End PDF Export by Test Name: %s \n - \n"
-export.pdf.skip.msg <- "-> TestR: Global export-pdf config: FALSE: PDF Export Skipped by Test Name: %s \n - \n"
+export.pdf.start.msg <- "-> TestR: Start to PDF Export > Test Name: %s \n  \n"
+export.pdf.end.msg <- "-> TestR: End PDF Export > Test Name: %s \n  \n"
+export.pdf.skip.msg <- "-> TestR: Global export-pdf config: FALSE: PDF Export Skipped > Test Name: %s \n  \n"
