@@ -18,6 +18,19 @@ Sys.setenv("LOADTEST_JMETER_PATH"=sprintf("C:\\apache-jmeter-%s\\bin\\jmeter.bat
 tdata <- get.test.data()
 
 
+
+#' T-Mobile Load Test Library Function
+#'
+#' @param url : String
+#' @param method : String
+#' @param thread : String
+#' @param loop : String
+#' @param delay : String
+#'
+#' @return : Data Frame:  LoadTest Results
+#' @export
+#'
+#' @examples
 do.load.test <- function(url, 
                          method, 
                          thread, 
@@ -31,6 +44,13 @@ do.load.test <- function(url,
                   delay_per_request = delay))
 }
 
+
+#' TestR Framework Main Function
+#'
+#' @return
+#' @export PDF
+#'
+#' @examples
 TestR <- function(){
   
   run <- lapply(tdata, function(x) 
