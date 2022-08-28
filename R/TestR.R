@@ -1,7 +1,30 @@
-# ========================================================================= #
-# TestR Framework Copyright © 2022 Berkant Yüksektepe                       #
-# Licensed under the MIT License.                                           #
-# ========================================================================= #
+# ============================================================================ #
+#
+# TestR Framework                                                             
+# 
+# Licensed Under The MIT License
+# 
+# Copyright (c) 2022 Berkant Yüksektepe
+# 
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the 'Software'), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#   
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+# 
+# THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+# 
+# ============================================================================ #
 
 # Check libraries installed or install
 source(paste0(getwd(),"/lib/init.R"), chdir = TRUE)
@@ -18,8 +41,6 @@ Sys.setenv("LOADTEST_JMETER_PATH"=sprintf("C:\\apache-jmeter-%s\\bin\\jmeter.bat
 
 # Get test data from yaml files
 tdata <- get.test.data()
-
-
 
 
 #' T-Mobile Load Test Library Function
@@ -75,11 +96,11 @@ TestR <- function(){
       # <--
       
       # --> Formatted
-      url.f <- url %>% str_replace("https://","")
-      test.t <- sprintf("%s (THR: %s, LPS: %s)", nam, thr, lop)
+      url.f <- url %>% str_remove(remove.https)
+      test.t <- sprintf(test.tag.title, nam, thr, lop)
       # <--
       
-      sprintf("-> TestR: Start by Test Name: %s \n", nam) %>%
+      sprintf(test.start.msg, nam) %>%
         cyan() %>%
           cat()
       
@@ -89,28 +110,31 @@ TestR <- function(){
                           lop, 
                           del)
       
-      sprintf("-> TestR: End by Test Name: %s \n - \n", nam) %>%
+      sprintf(test.end.msg, nam) %>%
         cyan() %>%
         cat()
       
 
       if(isTRUE(TestR.export.pdf)){
 
-        Create.Console.Message.sprintf(msg="-> TestR: Start to PDF Export by Test Name: %s \n - \n", name = nam)
+        Create.Console.Message.sprintf(
+          msg = export.pdf.start.msg, 
+          name = nam)
         
-        CreatePDF.TestR(results = res, automation_tag = test.t)
+        CreatePDF.TestR(results = res,
+                        automation_tag = test.t)
+        
+        Create.Console.Message.sprintf(
+          msg = export.pdf.end.msg,
+          name = nam)
         
       }else {
-        Create.Console.Message.sprintf(msg="-> TestR: PDF Export Skipped by Test Name: %s \n - \n", name = nam)
+        Create.Console.Message.sprintf(
+          msg = export.pdf.skip.msg,
+          name = nam)
       }
       
-      sprintf("-> TestR: End PDF Export by Test Name: %s \n - \n", nam) %>%
-        yellow() %>%
-        cat()
   })
 }
 
 TestR()
-
-
-
