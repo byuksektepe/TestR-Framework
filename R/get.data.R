@@ -12,7 +12,7 @@ library(magrittr)
 #' Get JMeter Version
 #' gets jmeter version from pre-defined config names in config.yml file
 #'
-#' @return : String : Jmeter.Version
+#' @return : String : Jmeter.Version.Value
 #' @export
 #'
 #' @examples
@@ -66,7 +66,7 @@ get.jmeter.version <- function(){
 #' Get Test Type
 #' gets test type from pre-defined config names in config.yml file
 #'
-#' @return : String : Test.Type
+#' @return : String : Test.Type.Value
 #' @export
 #'
 #' @examples
@@ -152,6 +152,64 @@ get.test.data <- function(){
           test.data.is.null <- sprintf(test.is.null.msg, getwd())
           
           test.data.is.null %>% stop()
+          
+        }
+      }
+    }
+  )
+  return(out)
+}
+
+#' Get Global Config
+#' gets all requested config parameter values in config.yml file.
+#' By given param;
+#'
+#' @param x : String : Config.Name
+#'
+#' @return : String : Config.Value
+#' @export
+#'
+#' @examples
+#' get.global.config(x="export-pdf")
+get.global.config <- function(x){
+  
+  config.name <- x
+  
+  out <- tryCatch(
+    
+    expr = {
+      
+      config.data <- var_config %>%
+        
+        flatten %>%
+        
+        keep(~ .x$name == config.name)
+      
+      config <- config.data[[1]]$value
+      
+    },
+    
+    error = function(e){
+      
+      config.not.found <- sprintf(config.required.msg, 
+                                     test.type.name, 
+                                     getwd())
+      config.not.found %>% stop()
+      
+    },
+    
+    finally = function(){
+      
+      config %>% {
+        
+        if(!is.null(.)) return(.)
+        
+        else{
+          
+          config.is.null <- sprintf(config.is.null.msg, 
+                                       test.type.name, 
+                                       getwd())
+          config.is.null %>% stop()
           
         }
       }

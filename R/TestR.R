@@ -5,6 +5,8 @@
 
 # Check libraries installed or install
 source(paste0(getwd(),"/lib/init.R"), chdir = TRUE)
+# Load Helper Functions
+source(paste0(getwd(),"/R/helper.R"), chdir = FALSE)
 # Get Data Functions
 source(paste0(getwd(),"/R/get.data.R"), chdir = FALSE)
 # Export Data Functions
@@ -16,6 +18,7 @@ Sys.setenv("LOADTEST_JMETER_PATH"=sprintf("C:\\apache-jmeter-%s\\bin\\jmeter.bat
 
 # Get test data from yaml files
 tdata <- get.test.data()
+
 
 
 
@@ -53,6 +56,10 @@ do.load.test <- function(url,
 #' @examples
 TestR <- function(){
   
+  #Set Global Configs in Test Runtime
+  TestR.export.pdf <- get.global.config(x="export-pdf")
+  TestR.export.html <- get.global.config(x="export-html")
+  
   run <- lapply(tdata, function(x) 
     
     for(r in x){
@@ -86,11 +93,16 @@ TestR <- function(){
         cyan() %>%
         cat()
       
-      sprintf("-> TestR: Start to PDF Export by Test Name: %s \n - \n", nam) %>%
-        yellow() %>%
-        cat()
-      
-      CreatePDF.TestR(results = res, automation_tag = test.t)
+
+      if(isTRUE(TestR.export.pdf)){
+
+        Create.Console.Message.sprintf(msg="-> TestR: Start to PDF Export by Test Name: %s \n - \n", name = nam)
+        
+        CreatePDF.TestR(results = res, automation_tag = test.t)
+        
+      }else {
+        Create.Console.Message.sprintf(msg="-> TestR: PDF Export Skipped by Test Name: %s \n - \n", name = nam)
+      }
       
       sprintf("-> TestR: End PDF Export by Test Name: %s \n - \n", nam) %>%
         yellow() %>%

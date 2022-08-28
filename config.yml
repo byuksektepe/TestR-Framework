@@ -17,13 +17,13 @@ configs:
     
   - name: export-pdf
     type: boolean
-    value: 1
-    pre-options: 0, 1
+    value: TRUE
+    pre-options: FALSE, TRUE
     
   - name: export-html
     type: boolean
-    value: 1
-    pre-options: 0, 1
+    value: TRUE
+    pre-options: FALSE, TRUE
 ---
   
     
