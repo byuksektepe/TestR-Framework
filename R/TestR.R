@@ -34,6 +34,8 @@ source(paste0(getwd(),"/R/helper.R"), chdir = FALSE)
 source(paste0(getwd(),"/R/get.data.R"), chdir = FALSE)
 # Export Data Functions
 source(paste0(getwd(),"/R/export.data.R"), chdir = FALSE)
+# Read Consts 
+source(paste0(getwd(),"/lib/const.R"), chdir = TRUE)
 
 # Set Jmeter Environment Variable
 jver <- get.jmeter.version()
@@ -96,7 +98,7 @@ TestR <- function(){
       # <--
       
       # --> Formatted
-      url.f <- url %>% str_remove(remove.https)
+      url.f <- url %>% str_remove(remove.str.https)
       test.t <- sprintf(test.tag.title, nam, thr, lop)
       # <--
       
@@ -122,7 +124,8 @@ TestR <- function(){
           name = nam)
         
         CreatePDF.TestR(results = res,
-                        automation_tag = test.t)
+                        automation_tag = test.t,
+                        description = des)
         
         Create.Console.Message.sprintf(
           msg = export.pdf.end.msg,
