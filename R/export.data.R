@@ -26,16 +26,13 @@
 # 
 # ============================================================================ #
 
-library(ggplot2)
-library(grid)
-library(gridExtra)
-library(png)
-library(jpeg)
-library(stringr)
-
 
 # Load Plots
 source(paste0(getwd(),"/plots/load.test.plots.R"), chdir = TRUE)
+
+logo      <- readPNG(paste0(getwd(),"/img/TestR-Logo.png"))
+test_mark <- readPNG(paste0(getwd(),"/img/TestR-Logo.png"))
+cover     <- readPNG(paste0(getwd(),"/img/TestR-Cover-7619720.png"))
 
 
 #' Create PDF File
@@ -43,12 +40,13 @@ source(paste0(getwd(),"/plots/load.test.plots.R"), chdir = TRUE)
 #'
 #' @param results : Data-Frame
 #' @param automation_tag : String
+#' @param description : String
 #'
 #' @return
 #' @export PDF
 #'
 #' @examples
-CreatePDF.TestR <- function(results, automation_tag)
+CreatePDF.TestR <- function(results, automation_tag, description)
 {
   automation_tag_formatted <- str_remove_all(automation_tag, "[^A-Za-z0-9]+")
   
@@ -59,7 +57,7 @@ CreatePDF.TestR <- function(results, automation_tag)
   # create a 2X2 grid
   par( mfrow= c(2,2) )
   
-  # Plot Results - don't touch here
+  # Plots
   pet <- tc_plot_elapsed_times(results)
   peth <- tc_plot_elapsed_times_histogram(results)
   prt <- tc_plot_requests_by_thread(results)
@@ -82,11 +80,28 @@ CreatePDF.TestR <- function(results, automation_tag)
   grid.raster(cover, vjust = 0.04, width=.99)
   
   
-  grid.text("TestR Load/Performance Test Framework", y=.26, gp = gpar(fontface = "bold", fontsize = 18))
-  grid.text("Load Test Report", y=.22, gp = gpar(fontface = "bold", fontsize = 15))
-  grid.text(paste0(automation_tag), y=.16, gp = gpar(fontface = "bold", fontsize = 15))
+  grid.text("TestR Load/Performance Test Framework", 
+            y=.41, 
+            gp = gpar(fontface = "bold",
+                      fontsize = 18))
   
-  grid.text(paste0(current_time), y=.08, gp = gpar(fontsize = 18))
+  grid.text("Load Test Report", 
+            y=.37,
+            gp = gpar(fontface = "bold",
+                      fontsize = 15))
+  
+  grid.text(description,
+            y=.32,
+            gp = gpar(fontsize = 12))
+  
+  grid.text(paste0(automation_tag),
+            y=.16,
+            gp = gpar(fontface = "bold",
+                      fontsize = 15))
+  
+  grid.text(paste0(current_time),
+            y=.08,
+            gp = gpar(fontsize = 18))
   
   out <- grid_graphs %>% 
     annotate_figure(bottom = text_grob(paste("\n \n This file auto generated and executed by: TestR Framework. Test Classes used. This page involves only load and performance tests, \n for more info about TestR please visit project repo: https://github.com/Berkantyuks/TestR-Framework\n"),
