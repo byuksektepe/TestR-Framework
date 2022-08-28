@@ -21,9 +21,13 @@ get.jmeter.version <- function(){
   jmeter.name <- "Jmeter-version"
   
   out <- tryCatch(
+    
     expr = {
+      
       jmeter.data <- var_config %>%
+        
         flatten %>%
+        
         keep(~ .x$name == jmeter.name)
       
       jmeter.version <- jmeter.data[[1]]$value
@@ -46,7 +50,7 @@ get.jmeter.version <- function(){
         if(!is.null(.)) return(.) 
         
         else {
-          jmeter.is.null <- sprintf(config.not.null.msg, 
+          jmeter.is.null <- sprintf(config.is.null.msg, 
                                     jmeter.name, 
                                     getwd())
           jmeter.is.null %>% stop()
@@ -75,7 +79,9 @@ get.test.type <- function(){
     expr = {
       
       test.type.data <- var_config %>%
+        
         flatten %>%
+        
         keep(~ .x$name == test.type.name)
       
       test.type <- test.type.data[[1]]$value
@@ -99,7 +105,7 @@ get.test.type <- function(){
         
         else{
           
-          test.type.is.null <- sprintf(config.not.null.msg, 
+          test.type.is.null <- sprintf(config.is.null.msg, 
                                        test.type.name, 
                                        getwd())
           test.type.is.null %>% stop()
@@ -115,14 +121,41 @@ get.test.type <- function(){
 #' Get Test Data
 #' gets test data from tests folder<Or Defined> in <test_file_name>.yml file
 #'
-#' @return : List : Test Data
+#' @return : List : Test.Data
 #' @export
 #'
 #' @examples
 get.test.data <- function(){
   
-  test_data <- var_test
-  
-  return(test_data)
-  
+  out <- tryCatch(
+    
+    expr = {
+      
+      test.data <- var_test
+      
+    },
+    
+    error = function(e){
+      
+      stop(e)
+      
+    },
+    
+    finally = function(){
+      
+      test.data %>% {
+        
+        if(!is.null(.)) return(.)
+        
+        else{
+          
+          test.data.is.null <- sprintf(test.is.null.msg, getwd())
+          
+          test.data.is.null %>% stop()
+          
+        }
+      }
+    }
+  )
+  return(out)
 }

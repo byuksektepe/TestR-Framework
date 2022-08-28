@@ -26,6 +26,7 @@ for(package in init.packages.list)
     
   }
 
+
 # Init Required Global Variables
 
 logo      <- readPNG("img/TestR-Logo.png")
@@ -33,4 +34,5 @@ test_mark <- readPNG("img/TestR-Logo.png")
 cover     <- readPNG("img/TestR-Cover-7619720.png")
 
 config.required.msg <- "TestR: Required config name of '%s' is not found in %s/config.yml file."
-config.not.null.msg <- "TestR: '%s' is should be not null in %s/config.yml file."
+config.is.null.msg <- "TestR: '%s' is should be not null in %s/config.yml file."
+test.is.null.msg <- "TestR: receiven test data is null, test execution stopped. Please check <test_file_name>.yml files. Default test directory is %s/tests/"
