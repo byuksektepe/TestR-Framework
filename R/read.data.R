@@ -42,17 +42,17 @@ library(magrittr)
 #' @examples
 read.test.data <- function(){
   
-  test.path <- paste0(getwd(), "/tests/")
+  test.path <- list.dirs(paste0(getwd(), "/tests"))
   
   out <- tryCatch(
     
     expr = {
       
-      test.files <- list.files(path=test.path, pattern=".yml", all.files=FALSE, full.names=FALSE)
+      test.files <- list.files(path=test.path, pattern="\\.yml$", all.files=FALSE, full.names=TRUE)
       
       test.list <- lapply(test.files,
-                          function(x) out <- yaml.load_file(paste0(test.path, x)))
-      
+                          function(x) out <- yaml.load_file(x))
+       
     },
     
     error = function(e){
