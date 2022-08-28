@@ -5,7 +5,8 @@
 
 # Init Required Packages
 init.packages.list <- c("loadtest", "ggplot2", "ggpubr", "grid", "gridExtra", "png",
-                        "jpeg", "stringr", "magrittr", "yaml","reshape2","data.tree", "purrr", "crayon", "roxygen2")
+                        "jpeg", "stringr", "magrittr", "yaml","reshape2","data.tree", 
+                        "purrr", "crayon", "roxygen2", "devtools")
 
 current_date <- Sys.Date()
 current_time <- Sys.time()
@@ -26,6 +27,17 @@ for(package in init.packages.list)
     
   }
 
+# Load libraries
+library(loadtest)
+library(ggpubr)
+library(ggplot2)
+library(grid)
+library(gridExtra)
+library(png)
+library(jpeg)
+library(stringr)
+library(magrittr)
+library(crayon)
 
 # Init Required Global Variables
 

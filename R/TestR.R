@@ -18,19 +18,6 @@ Sys.setenv("LOADTEST_JMETER_PATH"=sprintf("C:\\apache-jmeter-%s\\bin\\jmeter.bat
 tdata <- get.test.data()
 
 
-# Load libraries
-library(loadtest)
-library(ggpubr)
-library(ggplot2)
-library(grid)
-library(gridExtra)
-library(png)
-library(jpeg)
-library(stringr)
-library(magrittr)
-library(crayon)
-
-
 do.load.test <- function(url, 
                          method, 
                          thread, 
