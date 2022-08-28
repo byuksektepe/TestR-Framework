@@ -14,7 +14,17 @@ library(stringr)
 # Load Plots
 source(paste0(getwd(),"/plots/load.test.plots.R"), chdir = TRUE)
 
-## Create pdf file by test results
+
+#' Create PDF File
+#' Creates pdf file by test results
+#'
+#' @param results : Data-Frame
+#' @param automation_tag : String
+#'
+#' @return
+#' @export PDF
+#'
+#' @examples
 CreatePDF.TestR <- function(results, automation_tag)
 {
   automation_tag_formatted <- str_remove_all(automation_tag, "[^A-Za-z0-9]+")
