@@ -1,0 +1,23 @@
+Scenario-1:
+
+  - name: GitHub Load Test
+    description: Low level load test for github site
+    method: GET
+    url: https://www.github.com/
+    typle: load
+    thread: 7
+    loop: 30
+    head: NO_HEAD
+    delay: 100
+    
+Scenario-2:
+
+  - name: Baykar Load Test
+    description: low level load test for baykar.kariyer site
+    method: GET
+    url: https://kariyer.baykartech.com/
+    typle: load
+    thread: 7
+    loop: 30
+    head: NO_HEAD
+    delay: 100
