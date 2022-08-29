@@ -46,7 +46,11 @@ cover     <- readPNG(paste0(getwd(),"/img/TestR-Cover-7619720.png"))
 #' @export PDF
 #'
 #' @examples
-CreatePDF.TestR <- function(results, automation_tag, description)
+CreatePDF.TestR <- function(results,
+                            automation_tag,
+                            description,
+                            url,
+                            index)
 {
   automation_tag_formatted <- str_remove_all(automation_tag, "[^A-Za-z0-9]+")
   
@@ -62,6 +66,7 @@ CreatePDF.TestR <- function(results, automation_tag, description)
   peth <- tc_plot_elapsed_times_histogram(results)
   prt <- tc_plot_requests_by_thread(results)
   prs <- tc_plot_requests_per_second(results)
+  prc <- tc_plot_response_code(results)
   
   
   ar <- test_mark %>%
@@ -71,11 +76,14 @@ CreatePDF.TestR <- function(results, automation_tag, description)
                width= 0.05, 
                interpolate=TRUE) %>% annotation_custom()
   
-  grid_graphs <- ggarrange(pet,
+  grid.graphs.one <- ggarrange(pet,
                            peth, 
                            prt, 
                            prs,
                            ncol = 2, nrow = 2)
+  
+  grid.graphs.two <- ggarrange(prc,
+                           ncol = 1, nrow = 1)
   
   grid.raster(cover, vjust = 0.04, width=.99)
   
@@ -99,25 +107,49 @@ CreatePDF.TestR <- function(results, automation_tag, description)
             gp = gpar(fontface = "bold",
                       fontsize = 15))
   
-  grid.text(paste0(current_time),
-            y=.08,
-            gp = gpar(fontsize = 18))
+  grid.text(paste0(url),
+            y=.12,
+            gp = gpar(fontface = "bold",
+                      fontsize = 15))
   
-  out <- grid_graphs %>% 
+  grid.text(paste("Test Time:",
+                   current_time,
+                   "- Test Index:",
+                   index),
+            y=.05,
+            gp = gpar(fontsize = 16))
+  
+  out.plots <- grid.graphs.one %>% 
     annotate_figure(bottom = text_grob(paste("\n \n This file auto generated and executed by: TestR Framework. Test Classes used. This page involves only load and performance tests, \n for more info about TestR please visit project repo: https://github.com/Berkantyuks/TestR-Framework\n"),
                                        color = "black",
                                        face = "italic", 
                                        size = 10),
                     
-                    left = paste(current_time, "TestR"),
+                    left = paste(current_time, "TestR", index),
                     
-                    right = paste(current_time, "TestR"),
+                    right = paste(current_time, "TestR", index),
                     
-                    top = text_grob(paste0("\n Automated NF Test Results for ",automation_tag,"\n"), 
+                    top = text_grob(paste0("\n TestR: Automated Test Results for ",automation_tag,"\n"), 
                                     color = "black", 
                                     face = "bold", 
                                     size = 14)) + ar
   
-  print(out)
+  out.stat <-  grid.graphs.two %>%
+    annotate_figure(bottom = text_grob(paste("\n \n This file auto generated and executed by: TestR Framework. Test Classes used. This page involves only load and performance tests, \n for more info about TestR please visit project repo: https://github.com/Berkantyuks/TestR-Framework\n"),
+                                       color = "black",
+                                       face = "italic", 
+                                       size = 10),
+                    
+                    left = paste(current_time, "TestR", index),
+                    
+                    right = paste(current_time, "TestR", index),
+                    
+                    top = text_grob(paste0("\n TestR: Automated Test Results for ",automation_tag,"\n"), 
+                                    color = "black", 
+                                    face = "bold", 
+                                    size = 14)) + ar
+  
+  print(out.plots)
+  print(out.stat)
   dev.off()
 }

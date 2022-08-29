@@ -31,6 +31,29 @@ library(ggplot2)
 library(grid)
 library(gridExtra)
 
+tc_plot_response_code <- function(results)
+{
+  
+  if (!requireNamespace("ggplot2", quietly = TRUE)) {
+    stop("Package ggplot2 is needed for this function.", 
+         call. = FALSE)
+  }
+  
+ggplot2::ggplot(results, ggplot2::aes(x = time_since_start,
+                 y = response_code,
+                 colour = response_message)) +
+  ggplot2::geom_boxplot(notch = TRUE) +
+  ggplot2::facet_grid( request_status ~ response_message )+
+  ggplot2::labs(x = 'Time since start (milliseconds)',
+                y = 'Response Code')+
+  
+  ggplot2::labs(colour = 'Response Message') +
+  ggplot2::theme_bw() +
+  ggplot2::theme(
+    legend.position = 'bottom'
+  )
+}
+
 tc_plot_elapsed_times <- function (results) 
 {
   if (!requireNamespace("ggplot2", quietly = TRUE)) {
@@ -44,7 +67,7 @@ tc_plot_elapsed_times <- function (results)
                   title = "Time to complete request over duration of test", 
                   caption = "Horizontal line is the median response") + 
     ggplot2::theme_minimal() + ggplot2::scale_color_manual(values = c("#ff0000", 
-                                                                      "#00cc00"), drop = FALSE) + ggplot2::theme(legend.position = "bottom") + 
+                                                                      "#1d67b9"), drop = FALSE) + ggplot2::theme(legend.position = "bottom") + 
     ggplot2::scale_y_continuous(limits = c(0, NA)) + ggplot2::geom_hline(yintercept = median(results$elapsed))
 }
 
@@ -59,7 +82,7 @@ tc_plot_elapsed_times_histogram <- function (results, binwidth = 250)
     ggplot2::geom_histogram(binwidth = binwidth, color = "#000000") + 
     ggplot2::scale_x_continuous(breaks = seq(0, max(results[["elapsed"]]) * 
                                                2, binwidth)) + ggplot2::theme_minimal() + ggplot2::scale_fill_manual(values = c("#ff0000", 
-                                                                                                                                "#00cc00"), drop = FALSE) + ggplot2::labs(x = "Time to complete response (milliseconds)", 
+                                                                                                                                "#1d67b9"), drop = FALSE) + ggplot2::labs(x = "Time to complete response (milliseconds)", 
                                                                                                                                                                           fill = "Request status", title = "Distribution of time to complete responses") + 
     ggplot2::theme(legend.position = "bottom")
 }
@@ -75,7 +98,7 @@ tc_plot_requests_by_thread <- function (results)
   ggplot2::ggplot(results, ggplot2::aes(x = time_since_start, 
                                         y = thread, color = request_status)) + ggplot2::geom_point() + 
     ggplot2::theme_minimal() + ggplot2::scale_color_manual(values = c("#ff0000", 
-                                                                      "#00cc00"), drop = FALSE) + ggplot2::labs(x = "Time since start (milliseconds)", 
+                                                                      "#1d67b9"), drop = FALSE) + ggplot2::labs(x = "Time since start (milliseconds)", 
                                                                                                                 y = "Thread", color = "Request status", title = "Timeline of requests by thread", 
                                                                                                                 caption = "Point is at time of the start of request") + 
     ggplot2::theme(legend.position = "bottom")
@@ -102,7 +125,7 @@ tc_plot_requests_per_second <- function (results)
                               "%")
   counts[["label"]] <- ifelse(counts[["nn"]] == 0, "", counts[["label"]])
   ggplot2::ggplot(counts, ggplot2::aes(x = n, y = p, label = label)) + 
-    ggplot2::geom_col(fill = "#00cc00", color = "#000000") + 
+    ggplot2::geom_col(fill = "#1d67b9", color = "#000000") + 
     ggplot2::theme_minimal() + ggplot2::geom_text(vjust = -0.5) + 
     ggplot2::scale_x_continuous(breaks = seq(0, 1000, 1)) + 
     ggplot2::scale_y_continuous(limits = c(0, 1), labels = function(x) paste0(round(x, 
