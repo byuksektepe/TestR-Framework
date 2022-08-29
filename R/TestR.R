@@ -99,7 +99,10 @@ TestR <- function(){
       
       # --> Formatted
       url.f <- url %>% str_remove(remove.str.https)
+      
       test.t <- sprintf(test.tag.title, nam, thr, lop)
+      
+      test.n <- str_replace_all(toString(sample(1:100,5,rep=FALSE)), ", ", "-")
       # <--
       
       sprintf(test.start.msg, nam) %>%
@@ -125,7 +128,9 @@ TestR <- function(){
         
         CreatePDF.TestR(results = res,
                         automation_tag = test.t,
-                        description = des)
+                        description = des,
+                        url = url.f,
+                        index = test.n)
         
         Create.Console.Message.sprintf(
           msg = export.pdf.end.msg,
