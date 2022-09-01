@@ -27,12 +27,6 @@
 # ============================================================================ #
 
 
-library(yaml)
-library(reshape2)
-library(purrr)
-library(magrittr)
-
-
 #' Read Test Data
 #' reads all test files from defined folder
 #'
@@ -42,13 +36,18 @@ library(magrittr)
 #' @examples
 read.test.data <- function(){
   
-  test.path <- list.dirs(paste0(getwd(), "/tests"))
+  test.path <- getwd() %>% 
+                    paste0(., "/tests") %>% 
+                                    list.dirs(.)
   
   out <- tryCatch(
     
     expr = {
       
-      test.files <- list.files(path=test.path, pattern="\\.yml$", all.files=FALSE, full.names=TRUE)
+      test.files <- list.files(path = test.path,
+                               pattern = "\\.yml$",
+                               all.files = FALSE,
+                               full.names = TRUE)
       
       test.list <- lapply(test.files,
                           function(x) out <- yaml.load_file(x))
@@ -82,7 +81,8 @@ read.test.data <- function(){
 #' @examples
 read.config.data <- function(){
   
-  config.path <- paste0(getwd(), "/config.yml")
+  config.path <- getwd() %>% 
+                      paste0(., "/config.yml")
   
   out <- tryCatch(
     
@@ -119,6 +119,6 @@ read.config.data <- function(){
   return(out)
 }
 
-
+# Add to data in global env
 var_test <- read.test.data()
 var_config <- read.config.data()
