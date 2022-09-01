@@ -27,6 +27,18 @@
 # ============================================================================ #
 
 
+
+#' Create Console Message with sprintf
+#'
+#' @param msg : String : Console Message
+#' @param name : String : Test Name
+#' 
+#' @note msg parameter must be include sprintf string
+#'
+#' @return
+#' @export Console Message
+#'
+#' @examples
 Create.Console.Message.sprintf <- function(msg, name){
   msg %>% {
     sprintf(., name) %>% 
@@ -35,6 +47,14 @@ Create.Console.Message.sprintf <- function(msg, name){
   }
 }
 
+#' Create Console Message with only message
+#'
+#' @param msg : String : Console Message
+#'
+#' @return
+#' @export Console Message
+#'
+#' @examples
 Create.Console.Message <- function(msg){
   msg %>% {
     paste0(.) %>%
