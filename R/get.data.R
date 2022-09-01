@@ -188,6 +188,7 @@ get.test.data <- function(){
 #' By given param;
 #'
 #' @param x : String : Config.Name
+#' @note : do not use with nullable configs
 #'
 #' @return : String : Config.Value
 #' @export
