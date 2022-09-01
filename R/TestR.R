@@ -102,7 +102,7 @@ TestR <- function(){
       
       test.t <- sprintf(test.tag.title, nam, thr, lop)
       
-      test.n <- str_replace_all(toString(sample(1:100,5,rep=FALSE)), ", ", "-")
+      test.n <- Create.Test.Index()
       # <--
       
       sprintf(test.start.msg, nam) %>%
