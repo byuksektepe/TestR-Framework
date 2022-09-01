@@ -62,3 +62,16 @@ Create.Console.Message <- function(msg){
       cat()
   }
 }
+
+Create.Test.Index <- function(ra = 1:100,
+                              qu = 5,
+                              re = FALSE){
+  
+  Test.Index <- sample(ra,
+                       qu,
+                       re) %>% toString() %>% 
+                                      str_replace_all(.,
+                                                     ", ",
+                                                     "-")
+  Test.Index %>% return()
+}
