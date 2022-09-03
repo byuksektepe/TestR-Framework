@@ -9,3 +9,4 @@ Scenario-2:
     loop: 100
     head: NO_HEAD
     delay: 100
+    execute: TRUE
