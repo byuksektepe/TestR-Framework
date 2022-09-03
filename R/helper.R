@@ -75,3 +75,7 @@ Create.Test.Index <- function(ra = 1:100,
                                                      "-")
   Test.Index %>% return()
 }
+
+Control.Test.Execution <- function(ex){
+  
+}
