@@ -43,7 +43,7 @@ jver <- get.jmeter.version()
 
 switch(Sys.info()[['sysname']],
        Windows= {Sys.setenv("LOADTEST_JMETER_PATH"=sprintf("C:\\apache-jmeter-%s\\bin\\jmeter.bat", jver))},
-       Linux  = {Sys.setenv("LOADTEST_JMETER_PATH"=sprintf("linux path", jver))},
+       Linux  = {Sys.setenv("LOADTEST_JMETER_PATH"=sprintf("linux path test", jver))},
        Darwin = {Sys.setenv("LOADTEST_JMETER_PATH"=sprintf("mac os path", jver))})
 
 # Get test data from yaml files
