@@ -39,7 +39,12 @@ source(paste0(getwd(),"/lib/const.R"), chdir = TRUE)
 
 # Set Jmeter Environment Variable
 jver <- get.jmeter.version()
-Sys.setenv("LOADTEST_JMETER_PATH"=sprintf("C:\\apache-jmeter-%s\\bin\\jmeter.bat", jver))
+
+
+switch(Sys.info()[['sysname']],
+       Windows= {Sys.setenv("LOADTEST_JMETER_PATH"=sprintf("C:\\apache-jmeter-%s\\bin\\jmeter.bat", jver))},
+       Linux  = {Sys.setenv("LOADTEST_JMETER_PATH"=sprintf("linux path", jver))},
+       Darwin = {Sys.setenv("LOADTEST_JMETER_PATH"=sprintf("mac os path", jver))})
 
 # Get test data from yaml files
 tdata <- get.test.data()
