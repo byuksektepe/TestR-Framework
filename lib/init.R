@@ -27,7 +27,7 @@
 # ============================================================================ #
 
 # Init Required Packages
-init.packages.list <- c("loadtest", "ggplot2", "ggpubr", "grid", "gridExtra", "png",
+init.packages.list <- c("remotes","loadtest", "ggplot2", "ggpubr", "grid", "gridExtra", "png",
                         "jpeg", "stringr", "magrittr", "yaml","reshape2","data.tree", 
                         "purrr", "crayon", "roxygen2", "devtools")
 

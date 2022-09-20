@@ -54,7 +54,7 @@ CreatePDF.TestR <- function(results,
 {
   automation_tag_formatted <- str_remove_all(automation_tag, "[^A-Za-z0-9]+")
   
-  pdf(file= paste0("results\\pdf\\",current_date,"-",automation_tag_formatted,".pdf"), 
+  pdf(file= paste0("results/pdf/",current_date,"-",automation_tag_formatted,".pdf"), 
       width = 11, 
       height = 9.5)
   
