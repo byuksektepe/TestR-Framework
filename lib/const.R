@@ -36,6 +36,8 @@ test.is.null.msg <- "TestR: receiven test data is null, test execution stopped. 
 test.tag.title <- "%s (THR: %s, LPS: %s)"
 test.start.msg <- "-> TestR: Start > Test Name: %s \n"
 test.end.msg <- "-> TestR: End > Test Name: %s \n - \n"
+test.skip.msg <- "-> TestR Test Skipped by User Config. Test Name: %s \n"
+test.exe.fail <- "-> TestR: Test Execution Failed, execution parameter must be boolean. Test Name: %s \n"
 
 # Replace/Remove
 remove.str.https <- "https://"

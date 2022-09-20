@@ -100,6 +100,7 @@ TestR <- function(){
       thr <- r[[1]]$thread
       lop <- r[[1]]$loop
       del <- r[[1]]$delay
+      exe <- r[[1]]$execute
       # <--
       
       # --> Formatted
@@ -110,42 +111,57 @@ TestR <- function(){
       test.n <- Create.Test.Index()
       # <--
       
-      sprintf(test.start.msg, nam) %>%
-        cyan() %>%
+      # --> Test Execution
+      
+      if(isTRUE(exe)){
+        
+        sprintf(test.start.msg, nam) %>%
+          cyan() %>%
           cat()
-      
-      res <- do.load.test(url, 
-                          met, 
-                          thr, 
-                          lop, 
-                          del)
-      
-      sprintf(test.end.msg, nam) %>%
-        cyan() %>%
-        cat()
-      
-
-      if(isTRUE(TestR.export.pdf)){
-
+        
+        res <- do.load.test(url, 
+                            met, 
+                            thr, 
+                            lop, 
+                            del)
+        
+        sprintf(test.end.msg, nam) %>%
+          cyan() %>%
+          cat()
+        
+        
+        if(isTRUE(TestR.export.pdf)){
+          
+          Create.Console.Message.sprintf(
+            msg = export.pdf.start.msg, 
+            name = nam)
+          
+          CreatePDF.TestR(results = res,
+                          automation_tag = test.t,
+                          description = des,
+                          url = url.f,
+                          index = test.n)
+          
+          Create.Console.Message.sprintf(
+            msg = export.pdf.end.msg,
+            name = nam)
+          
+        }else {
+          Create.Console.Message.sprintf(
+            msg = export.pdf.skip.msg,
+            name = nam)
+        }
+      }else if(isFALSE(exe)){
         Create.Console.Message.sprintf(
-          msg = export.pdf.start.msg, 
+          msg = test.skip.msg,
           name = nam)
-        
-        CreatePDF.TestR(results = res,
-                        automation_tag = test.t,
-                        description = des,
-                        url = url.f,
-                        index = test.n)
-        
-        Create.Console.Message.sprintf(
-          msg = export.pdf.end.msg,
-          name = nam)
-        
       }else {
         Create.Console.Message.sprintf(
-          msg = export.pdf.skip.msg,
+          msg = test.exe.fail,
           name = nam)
       }
+      
+      # <---
       
   })
 }
